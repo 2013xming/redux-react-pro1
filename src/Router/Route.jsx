@@ -49,6 +49,11 @@ const applyDeposit = (location, cb) => {
         cb(null, require('../Component/applyDeposit').default)
     },'applyDeposit')
 }
+const mycanvas = (location,cb) => {
+    require.ensure([],require => {
+        cb(null,require('../Component/mycanvas').default);
+    },'mycanvas');
+}
 
 const RouteConfig = (
     <Router history={history}>
@@ -61,6 +66,7 @@ const RouteConfig = (
             <Route path="allDeposit" getComponent={allDeposit} />//余额
             <Route path="applyDeposit" getComponent={applyDeposit} />//申请提现
             <Route path="applyRecord" getComponent={applyRecord} /> //提现记录
+            <Route path="mycanvas" getComponent={mycanvas} /> //
             <Redirect from='*' to='/'  />
         </Route>
     </Router>
