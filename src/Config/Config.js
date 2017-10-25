@@ -5,7 +5,8 @@ import FastClick from './fastclick.js';
     recalc = () => {
       let clientWidth = docEl.clientWidth;
       if (!clientWidth) return;
-      docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+     // docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+      docEl.style.fontSize = (clientWidth / 7.5) + 'px';
     };
   if (!doc.addEventListener) return;
   win.addEventListener(resizeEvt, recalc, false);
