@@ -2,13 +2,13 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
 var HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 //定义地址
-var ROOT_PATH = path.resolve(__dirname);
-var APP_PATH = path.resolve(ROOT_PATH, 'src'); //__dirname 中的src目录，以此类推
-var APP_FILE = path.resolve(APP_PATH, 'app'); //根目录文件app.jsx地址
-var BUILD_PATH = path.resolve(ROOT_PATH, '/pxq/dist'); //发布文件所存放的目录/pxq/dist/前面加/报错？
-
+var ROOT_PATH = path.join(__dirname);
+var APP_PATH = path.join(ROOT_PATH, 'src'); //__dirname 中的src目录，以此类推
+var APP_FILE = path.join(APP_PATH, 'app'); //根目录文件app.jsx地址
+var BUILD_PATH = path.join(__dirname, '/pxq/dist'); //发布文件所存放的目录/pxq/dist/前面加/报错？
 
 module.exports = {
     entry: {
@@ -24,7 +24,7 @@ module.exports = {
         ]
     },
     output: {
-        publicPath: './dist/', //编译好的文件，在服务器的路径,域名会自动添加到前面
+        publicPath: BUILD_PATH, //编译好的文件，在服务器的路径,域名会自动添加到前面
         path: BUILD_PATH, //编译到当前目录
         filename: '[name].js', //编译后的文件名字
         chunkFilename: '[name].[chunkhash:5].min.js',
@@ -33,7 +33,8 @@ module.exports = {
         loaders: [{
             test: /\.js$/,
             exclude: /^node_modules$/,
-            loader: 'babel'
+            loader: 'babel',
+            query: {compact: true}
         }, {
             test: /\.css$/,
             exclude: /^node_modules$/,
@@ -83,7 +84,15 @@ module.exports = {
             compress: {
                 warnings: false
             }
-        })
+        }),
+        new CleanWebpackPlugin(
+            [BUILD_PATH],　 //匹配删除的文件
+            {
+                root: __dirname,       　　　　　　　　　　//根目录
+                verbose:  true,        　　　　　　　　　　//开启在控制台输出信息
+                dry:      false        　　　　　　　　　　//启用删除文件
+            }
+        )
     ],
     resolve: {
         extensions: ['', '.js', '.jsx', '.less', '.scss', '.css'] //后缀名自动补全

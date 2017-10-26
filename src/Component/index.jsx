@@ -49,7 +49,6 @@ class Main extends Component {
     }
    
     render() {
-        console.log(SettingBlock);
         return (
             <div className="component_container">
                 <h5 className='title'>设置</h5>

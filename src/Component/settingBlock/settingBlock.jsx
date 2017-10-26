@@ -8,8 +8,8 @@ import template from '../common/template';
 import './settingBlock.less';
  
 class Main extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     componentWillMount() {
@@ -30,7 +30,9 @@ class Main extends Component {
     render() {
         return (
             <div className="settingItem">
-                <p>推送铃声</p>
+                <p>推送铃声 <span className="icon-switch on"></span></p>
+                <p>清空缓存 <span className="text"></span></p>
+                <p>协议 <span className="icon-arrow"></span></p>
             </div>
         );
     }

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node server.js",
     "hot": "node server_hot.js",
-    "dist": "webpack --config webpack.config.dist.js --progress --colors --watch -p"
+    "dist": "webpack --config webpack.config.dist.js --progress --colors -p"
   },
   "repository": {
     "type": "github",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/bailicangdu/pxq#readme",
   "dependencies": {
+    "clean-webpack-plugin": "^0.1.17",
     "github-markdown-css": "^2.4.0",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
