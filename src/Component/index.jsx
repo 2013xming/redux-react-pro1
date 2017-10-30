@@ -13,20 +13,20 @@ class Main extends Component {
         this.state = {
             settings:[
 	            [
-		            {title:'锁屏开关',type:'switch',defaultVal:false},
-		            {title:'非Wifi网络加载',type:'switch',defaultVal:false},
+		            {title:'锁屏开关',type:'switch',val:'on'},
+		            {title:'非Wifi网络加载',type:'switch',val:'off'},
 	            ],
 	            [
-		            {title:'消息推送设置',type:'switch',defaultVal:false},
+		            {title:'消息推送设置',type:'switch',val:'on'},
 		            
 	            ],
 	            [
-		            {title:'消息推送设置',type:'text',defaultVal:'0K'},   
+		            {title:'消息推送设置',type:'text',val:'22.2K'},   
 	            ],
 	            [
-		            {title:'关于',type:'link',defaultVal:'http://www.baidu.com'},
-		            {title:'免责声明',type:'link',defaultVal:'http://www.baidu.com'},   
-		            {title:'更新检查',type:'link',defaultVal:'http://www.baidu.com'},      
+		            {title:'关于',type:'link',val:'http://www.baidu.com'},
+		            {title:'免责声明',type:'link',val:'http://www.baidu.com'},   
+		            {title:'更新检查',type:'link',val:'http://www.baidu.com'},      
 	            ],
             ]
         }
@@ -49,11 +49,15 @@ class Main extends Component {
     }
    
     render() {
+    	
         return (
-            <div className="component_container">
+            <div className="setting-container">
                 <h5 className='title'>设置</h5>
-              	<SettingBlock />
-            
+	                {
+	                	this.state.settings.map((item,index)=>{
+	                		return <SettingBlock items={item} key={index} />
+                		})
+	                }            
             </div>
         )
     }

@@ -10,6 +10,10 @@ import './settingBlock.less';
 class Main extends Component {
     constructor(props) {
         super(props);
+        this.switchClick = (event)=>{
+            console.log(event);
+            console.log(this);
+        }
     }
 
     componentWillMount() {
@@ -30,9 +34,19 @@ class Main extends Component {
     render() {
         return (
             <div className="settingItem">
-                <p>推送铃声 <span className="icon-switch on"></span></p>
-                <p>清空缓存 <span className="text"></span></p>
-                <p>协议 <span className="icon-arrow"></span></p>
+                {
+                    this.props.items.map((item,index)=>{
+                        if(item.type == 'switch'){
+                            if(item.val == 'on')
+                                return <p key={index}>{item.title} <span className="icon-switch on" onClick={this.switchClick}></span></p>;
+                            else return <p key={index}>{item.title} <span className="icon-switch off"></span></p>;
+                        }else if(item.type == 'text'){
+                            return <p key={index}>{item.title} <span className="text">{item.val}</span></p>
+                        }else if(item.type == 'link'){
+                            return <p key={index}><a href={item.val}>{item.title}<span className="icon-arrow"></span></a></p>
+                        } 
+                    })
+                } 
             </div>
         );
     }
