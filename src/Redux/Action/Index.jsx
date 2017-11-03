@@ -134,3 +134,9 @@ export const testAction = (data) => {
         data,
     }
 }
+
+export const clickItem = ()=>{
+    return {
+        type : 'CLICK_ITEM', 
+    }
+}

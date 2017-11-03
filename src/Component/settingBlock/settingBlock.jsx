@@ -5,15 +5,13 @@ import { connect } from 'react-redux';
 import { is, fromJS} from 'immutable';
 import {Tool} from '../../Config/Tool';
 import template from '../common/template';
+import SettingItem from '../settingItem/settingItem';
 import './settingBlock.less';
  
 class Main extends Component {
     constructor(props) {
         super(props);
-        this.switchClick = (event)=>{
-            console.log(event);
-            console.log(this);
-        }
+        
     }
 
     componentWillMount() {
@@ -36,15 +34,7 @@ class Main extends Component {
             <div className="settingItem">
                 {
                     this.props.items.map((item,index)=>{
-                        if(item.type == 'switch'){
-                            if(item.val == 'on')
-                                return <p key={index}>{item.title} <span className="icon-switch on" onClick={this.switchClick}></span></p>;
-                            else return <p key={index}>{item.title} <span className="icon-switch off"></span></p>;
-                        }else if(item.type == 'text'){
-                            return <p key={index}>{item.title} <span className="text">{item.val}</span></p>
-                        }else if(item.type == 'link'){
-                            return <p key={index}><a href={item.val}>{item.title}<span className="icon-arrow"></span></a></p>
-                        } 
+                        return <SettingItem item={item} key={index} />
                     })
                 } 
             </div>
@@ -56,8 +46,20 @@ class Main extends Component {
     }
 }
 //export default Main;
-export default template({
+/*export default template({
     id: 'settingBlock',  //应用关联使用的redux
     component: Main,
     url: ''
 });
+*/
+const mapStateToProps = (state) =>{
+    return  {
+        item: state.item
+    }
+}
+const mapDispatchToProps = (dispatch,ownProps) =>{
+    return {
+        
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Main)

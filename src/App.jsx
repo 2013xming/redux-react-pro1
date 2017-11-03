@@ -8,7 +8,7 @@ import './Config/Config.js';//引入默认配置
 
 
 store.subscribe(() => { //监听state变化
-    //console.log(store.getState())
+    console.log(store.getState())
 });
 
 render(

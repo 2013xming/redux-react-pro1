@@ -13,20 +13,20 @@ class Main extends Component {
         this.state = {
             settings:[
 	            [
-		            {title:'锁屏开关',type:'switch',val:'on'},
-		            {title:'非Wifi网络加载',type:'switch',val:'off'},
+		            {id:'1',title:'锁屏开关',type:'switch',val:'on'},
+		            {id:'2',title:'非Wifi网络加载',type:'switch',val:'off'},
 	            ],
 	            [
-		            {title:'消息推送设置',type:'switch',val:'on'},
+		            {id:'3',title:'消息推送设置',type:'switch',val:'on'},
 		            
 	            ],
 	            [
-		            {title:'消息推送设置',type:'text',val:'22.2K'},   
+		            {id:'4',title:'消息推送设置',type:'text',val:'22.2K'},   
 	            ],
 	            [
-		            {title:'关于',type:'link',val:'http://www.baidu.com'},
-		            {title:'免责声明',type:'link',val:'http://www.baidu.com'},   
-		            {title:'更新检查',type:'link',val:'http://www.baidu.com'},      
+		            {id:'5',title:'关于',type:'link',val:'http://www.baidu.com'},
+		            {id:'6',title:'免责声明',type:'link',val:'http://www.baidu.com'},   
+		            {id:'7',title:'更新检查',type:'link',val:'http://www.baidu.com'},      
 	            ],
             ]
         }
@@ -72,3 +72,4 @@ export default template({
     component: Main,//接收数据的组件入口
     url: ''
 });
+
