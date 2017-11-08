@@ -135,8 +135,10 @@ export const testAction = (data) => {
     }
 }
 
-export const clickItem = ()=>{
+export const clickItem = (id,val)=>{
     return {
         type : 'CLICK_ITEM', 
+        id,
+        val
     }
 }

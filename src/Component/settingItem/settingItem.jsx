@@ -10,14 +10,11 @@ import './settingItem.less';
 
 
 class Main extends Component {
-    constructor(props,context) {
-        super(props,context);
-    //    console.log(this.props);
+    constructor(props) {
+        super(props);
         this.state=Object.assign({},this.state,props);
-        this.switchClick = ()=>{
-            var item = this.state.item;
-            item.val ='off';
-            this.setState({item:item})
+        this.switchClick = (id,val)=>{
+            this.state.clickItem(3,'off');
         }
     }
 
@@ -60,14 +57,14 @@ class Main extends Component {
         
     }
 }
-//export default Main;
+export default Main;
 /*export default template({
     id: 'settingItem',  //应用关联使用的redux
     component: Main,
     url: ''
 });*/
 
-const mapStateToProps = (state) =>{
+/*const mapStateToProps = (state) =>{
     console.log('mapStateToProps');
     console.log(state);
     var item = Object.assign({},state.item);
@@ -80,4 +77,4 @@ const mapDispatchToProps = (dispatch,ownProps) =>{
         switchClick:(...args) => dispatch(action.clickItem())
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Main)
+export default connect(mapStateToProps,mapDispatchToProps)(Main)*/

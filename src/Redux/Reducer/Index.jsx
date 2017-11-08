@@ -70,13 +70,15 @@ export const saleRecord = (state = Immutable.fromJS({}) , action = {}) => {
 }
 
 
-export const clickItem = (state={},action={})=>{
+export const clickItems = (state={},action={})=>{
+
     switch(action.type){
         case "CLICK_ITEM":
+            
             return {
-                id : 1,
+                id : 3,
                 type:'switch',
-                val:'off',
+                val: 'off',
             }
         default:
             return state;
