@@ -11,31 +11,11 @@ import *as action from '../Redux/Action/Index';
 
 import './index.less';
 class Main extends Component {
-    constructor(props) {
+/*    constructor(props) {
         super(props);
         this.state=Object.assign({},this.state,props);
-        /*this.state = {
-            settings:[
-	            [
-		            {id:'1',title:'锁屏开关',type:'switch',val:'on'},
-		            {id:'2',title:'非Wifi网络加载',type:'switch',val:'off'},
-	            ],
-	            [
-		            {id:'3',title:'消息推送设置',type:'switch',val:'on'},
-		            
-	            ],
-	            [
-		            {id:'4',title:'消息推送设置',type:'text',val:'22.2K'},   
-	            ],
-	            [
-		            {id:'5',title:'关于',type:'link',val:'http://www.baidu.com'},
-		            {id:'6',title:'免责声明',type:'link',val:'http://www.baidu.com'},   
-		            {id:'7',title:'更新检查',type:'link',val:'http://www.baidu.com'},      
-	            ],
-            ]
-        }*/
-        
-    }
+
+    }*/
 
     componentWillMount() {
        
@@ -44,25 +24,41 @@ class Main extends Component {
         
     }
 
-    /*shouldComponentUpdate(nextProps, nextState) {
-        
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextState);
     }
     
     componentWillUpdate(nextProps,nextState){
-        
-    }*/
+        console.log(nextState);
+    }
    
     render() {
-    	const {clickItem} = this.props;
+    	/*const {clickItem,settings} = this.props;
+        const settingData = settings.data;
+        console.log("settingData:");
+        console.log(settingData);
         return (
             <div className="setting-container">
                 <h5 className='title'>设置</h5>
 	                {
-	                	this.state.settings.map((item,index)=>{
-	                		return <SettingBlock items={item} key={index} clickItem={clickItem} />
+	                	settingData.map((item,index)=>{
+	                		return <SettingBlock items={item} key={index} clickItem={clickItem} row={index}/>
                 		})
 	                }            
             </div>
+        )*/
+        const {increment, decrement, counter} = this.props;
+        console.log(this.props);
+        //渲染组件，包括一个数字，四个按钮
+        return (
+            <p>
+                Clicked: {counter} time
+                {' '}
+                <button onClick={increment}>+</button>
+                {' '}
+                <button onClick={decrement}>-</button>
+                {' '}
+            </p>
         )
     }
     
@@ -78,31 +74,34 @@ class Main extends Component {
 });
 */
 
-const mapStateToProps = (state) =>{
+/*const mapStateToProps = (state) =>{
+	console.log("mapStateToProps:");
+	console.log(state);
     return  {
-        settings:[
-	            [
-		            {id:'1',title:'锁屏开关',type:'switch',val:'on'},
-		            {id:'2',title:'非Wifi网络加载',type:'switch',val:'off'},
-	            ],
-	            [
-		            {id:'3',title:'消息推送设置',type:'switch',val:'on'},
-		            
-	            ],
-	            [
-		            {id:'4',title:'消息推送设置',type:'text',val:'22.2K'},   
-	            ],
-	            [
-		            {id:'5',title:'关于',type:'link',val:'http://www.baidu.com'},
-		            {id:'6',title:'免责声明',type:'link',val:'http://www.baidu.com'},   
-		            {id:'7',title:'更新检查',type:'link',val:'http://www.baidu.com'},      
-	            ],
-            ]
+        settings : state.settings
     }
 }
 const mapDispatchToProps = (dispatch,ownProps) =>{
     return {
-        clickItem:(...args)=>{dispatch(action.clickItem(3,'off'))}
+        clickItem:(...args)=>{dispatch(action.clickItem(...args))}
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Main)
+export default connect(mapStateToProps,mapDispatchToProps)(Main)*/
+
+//将state.counter绑定到props的counter
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        counter: state.counter
+    }
+};
+//将action的所有方法绑定到props上
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        increment: (...args) => dispatch(action.increment(...args)),
+        decrement: (...args) => dispatch(action.decrement(...args))
+    }
+};
+
+//通过react-redux提供的connect方法将我们需要的state中的数据和actions中的方法绑定到props上
+export default connect(mapStateToProps, mapDispatchToProps)(Main)

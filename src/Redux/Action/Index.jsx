@@ -135,10 +135,20 @@ export const testAction = (data) => {
     }
 }
 
-export const clickItem = (id,val)=>{
+export const clickItem = (id,row,inlineRow,val)=>{
     return {
         type : 'CLICK_ITEM', 
         id,
-        val
+        val,
+        row,
+        inlineRow
     }
 }
+export const increment = ()=> {
+    return {
+        type: 'INCREMENT_COUNTER',
+    }
+};
+export const decrement = ()=> {
+    return {type: 'DECREMENT_COUNTER'}
+};

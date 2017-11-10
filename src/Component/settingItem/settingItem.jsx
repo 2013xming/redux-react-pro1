@@ -13,8 +13,9 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state=Object.assign({},this.state,props);
-        this.switchClick = (id,val)=>{
-            this.state.clickItem(3,'off');
+        this.switchClick = (id,row,inlineRow,val)=>{
+            var value = val=='on' ? 'off' : 'on';
+            this.state.clickItem(id,row,inlineRow,value);
         }
     }
 
@@ -38,9 +39,9 @@ class Main extends Component {
         let content;
         if(item.type == 'switch'){
             if(item.val == 'on')
-                content =  <p id={item.id} onClick={this.switchClick} >{item.title}
+                content =  <p id={item.id} onClick={()=>this.switchClick(item.id,this.state.row,this.state.inlineRow,item.val)} >{item.title}
                             <span className="icon-switch on"></span></p>        
-            else content = <p id={item.id} onClick={this.switchClick} >{item.title}<span className="icon-switch off" ></span></p>
+            else content = <p id={item.id} onClick={()=>this.switchClick(item.id,this.state.row,this.state.inlineRow,item.val)} >{item.title}<span className="icon-switch off" ></span></p>
         }else if(item.type == 'text'){
             content = <p id={item.id} >{item.title}<span className="text">{item.val}</span></p>
         }else if(item.type == 'link'){

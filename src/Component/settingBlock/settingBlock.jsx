@@ -34,7 +34,7 @@ class Main extends Component {
             <div className="settingItem">
                 {
                     this.props.items.map((item,index)=>{
-                        return <SettingItem item={item} key={index} clickItem={clickItem}/>
+                        return <SettingItem item={item} key={index} clickItem={clickItem} row={this.props.row} inlineRow={index}/>
                     })
                 } 
             </div>

@@ -7,7 +7,26 @@ import {GET_DATA_START , GET_DATA_SUCCESS, TEST_DISPATCH} from '../Action/Index'
 
 //const initialState = Immutable.fromJS({}) //=Immutable.Map({})
 
-const defaultlState = Immutable.fromJS({data: {}, isFetching: false})
+const defaultlState = Immutable.fromJS({data: {}, isFetching: false});
+const initialState = {
+        data:[
+                [
+                    {id:'1',title:'锁屏开关',type:'switch',val:'on'},
+                    {id:'2',title:'非Wifi网络加载',type:'switch',val:'off'},
+                ],
+                [
+                    {id:'3',title:'消息推送设置',type:'switch',val:'on'},     
+                ],
+                [
+                    {id:'4',title:'消息推送设置',type:'text',val:'22.2K'},   
+                ],
+                [
+                    {id:'5',title:'关于',type:'link',val:'http://www.baidu.com'},
+                    {id:'6',title:'免责声明',type:'link',val:'http://www.baidu.com'},   
+                    {id:'7',title:'更新检查',type:'link',val:'http://www.baidu.com'},      
+                ],
+            ]
+    };
 //首次渲染时获取数据
 export const fetchData = (state = defaultlState , action = {}) => {
     switch(action.type){
@@ -70,17 +89,26 @@ export const saleRecord = (state = Immutable.fromJS({}) , action = {}) => {
 }
 
 
-export const clickItems = (state={},action={})=>{
-
+export const settings = (state=initialState,action={})=>{
+/*    console.log("action@@@@@:");
+    console.log(action);
+    console.log(state);*/
     switch(action.type){
         case "CLICK_ITEM":
-            
-            return {
-                id : 3,
-                type:'switch',
-                val: 'off',
-            }
+            state.data[action.row][action.inlineRow].val = action.val;
+            return state;
         default:
             return state;
     }
 }
+
+export default function counter(state = 0, action) {
+    switch (action.type) {
+        case 'INCREMENT_COUNTER':
+            return state + 1;
+        case 'DECREMENT_COUNTER':
+            return state - 1;
+        default:
+            return state
+    }
+};
