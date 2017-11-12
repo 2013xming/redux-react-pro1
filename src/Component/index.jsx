@@ -24,47 +24,45 @@ class Main extends Component {
         
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log(nextState);
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log(nextState);
+    // }
     
-    componentWillUpdate(nextProps,nextState){
-        console.log(nextState);
-    }
+    // componentWillUpdate(nextProps,nextState){
+    //     console.log(nextState);
+    // }
    
     render() {
-    	/*const {clickItem,settings} = this.props;
+    	const {clickItem,settings} = this.props;
         const settingData = settings.data;
         console.log("settingData:");
         console.log(settingData);
         return (
             <div className="setting-container">
                 <h5 className='title'>设置</h5>
+                
 	                {
-	                	settingData.map((item,index)=>{
+	                	settings.data.map((item,index)=>{
 	                		return <SettingBlock items={item} key={index} clickItem={clickItem} row={index}/>
                 		})
 	                }            
             </div>
-        )*/
-        const {increment, decrement, counter} = this.props;
-        console.log(this.props);
-        //渲染组件，包括一个数字，四个按钮
-        return (
-            <p>
-                Clicked: {counter} time
-                {' '}
-                <button onClick={increment}>+</button>
-                {' '}
-                <button onClick={decrement}>-</button>
-                {' '}
-            </p>
         )
+        // const {increment, decrement, counter} = this.props;
+        // console.log(this.props);
+        // //渲染组件，包括一个数字，四个按钮
+        // return (
+        //     <p>
+        //         Clicked: {counter} time
+        //         {' '}
+        //         <button onClick={increment}>+</button>
+        //         {' '}
+        //         <button onClick={decrement}>-</button>
+        //         {' '}
+        //     </p>
+        // )
     }
     
-    componentWillUnmount() {
-        
-    }
 }
 
 /*export default template({
@@ -74,7 +72,7 @@ class Main extends Component {
 });
 */
 
-/*const mapStateToProps = (state) =>{
+const mapStateToProps = (state) =>{
 	console.log("mapStateToProps:");
 	console.log(state);
     return  {
@@ -86,22 +84,23 @@ const mapDispatchToProps = (dispatch,ownProps) =>{
         clickItem:(...args)=>{dispatch(action.clickItem(...args))}
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Main)*/
+export default connect(mapStateToProps,mapDispatchToProps)(Main)
 
 //将state.counter绑定到props的counter
-const mapStateToProps = (state) => {
-    console.log(state);
-    return {
-        counter: state.counter
-    }
-};
-//将action的所有方法绑定到props上
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        increment: (...args) => dispatch(action.increment(...args)),
-        decrement: (...args) => dispatch(action.decrement(...args))
-    }
-};
+// const mapStateToProps = (state) => {
+//     console.log('state:');
+//     console.log(state);
+//     return {
+//         counter: state.counter
+//     }
+// };
+// //将action的所有方法绑定到props上
+// const mapDispatchToProps = (dispatch, ownProps) => {
+//     return {
+//         increment: (...args) => dispatch(action.increment(...args)),
+//         decrement: (...args) => dispatch(action.decrement(...args))
+//     }
+// };
 
-//通过react-redux提供的connect方法将我们需要的state中的数据和actions中的方法绑定到props上
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
+// //通过react-redux提供的connect方法将我们需要的state中的数据和actions中的方法绑定到props上
+// export default connect(mapStateToProps, mapDispatchToProps)(Main)

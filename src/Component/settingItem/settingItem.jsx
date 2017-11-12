@@ -19,12 +19,12 @@ class Main extends Component {
         }
     }
 
-    componentWillMount() {
+    // componentWillMount() {
        
-    }
-    componentDidMount() {
+    // }
+    // componentDidMount() {
         
-    }
+    // }
 
     /*shouldComponentUpdate(nextProps, nextState) {
         

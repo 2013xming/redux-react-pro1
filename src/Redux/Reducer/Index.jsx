@@ -90,19 +90,18 @@ export const saleRecord = (state = Immutable.fromJS({}) , action = {}) => {
 
 
 export const settings = (state=initialState,action={})=>{
-/*    console.log("action@@@@@:");
-    console.log(action);
-    console.log(state);*/
+    console.log("action@@@@@:");
+    console.log(state);
     switch(action.type){
         case "CLICK_ITEM":
             state.data[action.row][action.inlineRow].val = action.val;
-            return state;
+            return Object.assign({},state);
         default:
             return state;
     }
 }
 
-export default function counter(state = 0, action) {
+export function counter(state = 0, action) {
     switch (action.type) {
         case 'INCREMENT_COUNTER':
             return state + 1;
