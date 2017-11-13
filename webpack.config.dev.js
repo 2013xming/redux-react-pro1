@@ -15,7 +15,7 @@ module.exports = {
         app: APP_FILE
     },
     output: {
-        publicPath: '/pxq/dist/', //编译好的文件，在服务器的路径,这是静态资源引用路径
+        publicPath: BUILD_PATH, //编译好的文件，在服务器的路径,这是静态资源引用路径
         path: BUILD_PATH, //编译到当前目录
         filename: '[name].js', //编译后的文件名字
         chunkFilename: '[name].[chunkhash:5].min.js',
@@ -70,9 +70,16 @@ module.exports = {
             template: './src/template/index.html', //html模板路径
             hash: false,
         }),
-        new ExtractTextPlugin('[name].css')
+        new ExtractTextPlugin('[name].css'),
+        new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {
         extensions: ['', '.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
-    }
+    },
+    devServer: {
+        contentBase: "./",
+        historyApiFallback: true,
+        hot:true,
+        inline: true // 实时刷新
+    },
 };

@@ -35,8 +35,9 @@ class Main extends Component {
     render() {
     	const {clickItem,settings} = this.props;
         const settingData = settings.data;
-        console.log("settingData:");
-        console.log(settingData);
+        console.log(window);
+/*        console.log("settingData:");
+        console.log(settingData);*/
         return (
             <div className="setting-container">
                 <h5 className='title'>设置</h5>
@@ -74,7 +75,7 @@ class Main extends Component {
 
 const mapStateToProps = (state) =>{
 	console.log("mapStateToProps:");
-	console.log(state);
+//	console.log(state);
     return  {
         settings : state.settings
     }

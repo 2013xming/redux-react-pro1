@@ -15,6 +15,9 @@ render(
     <Provider store={store}>
         {route}
     </Provider>,
-    document.body.appendChild(document.createElement('div'))
+    document.getElementById('root')
 );
+if(module.hot){
+	module.hot.accept();
+}
 

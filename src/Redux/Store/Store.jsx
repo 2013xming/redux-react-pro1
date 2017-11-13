@@ -9,4 +9,13 @@ var store = createStore(
     applyMiddleware(thunk)
 );
 
+if (module.hot) {
+	// Enable Webpack hot module replacement for reducers
+	console.log('hot');
+	module.hot.accept('../Reducer', () => {
+	  	var nextRootReducer = require('../Reducer/Index');
+	  	store.replaceReducer(nextRootReducer);
+	});
+}
+
 export default store;

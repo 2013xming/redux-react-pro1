@@ -14,7 +14,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
 	progress: true,
 	stats: {
 		colors: true,
-	}
+	},
+	address:'127.0.0.1',
+	port: 8088
 }));
 
 //代理服务器

@@ -15,7 +15,7 @@ const initialState = {
                     {id:'2',title:'非Wifi网络加载',type:'switch',val:'off'},
                 ],
                 [
-                    {id:'3',title:'消息推送设置',type:'switch',val:'on'},     
+                    {id:'3',title:'消息推送设置12345',type:'switch',val:'on'},     
                 ],
                 [
                     {id:'4',title:'消息推送设置',type:'text',val:'22.2K'},   
@@ -90,8 +90,8 @@ export const saleRecord = (state = Immutable.fromJS({}) , action = {}) => {
 
 
 export const settings = (state=initialState,action={})=>{
-    console.log("action@@@@@:");
-    console.log(state);
+/*    console.log("action@@@@@:");
+    console.log(state);*/
     switch(action.type){
         case "CLICK_ITEM":
             state.data[action.row][action.inlineRow].val = action.val;
