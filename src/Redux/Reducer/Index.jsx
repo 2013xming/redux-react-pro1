@@ -11,7 +11,7 @@ const defaultlState = Immutable.fromJS({data: {}, isFetching: false});
 const initialState = {
         data:[
                 [
-                    {id:'1',title:'锁屏开关',type:'switch',val:'on'},
+                    {id:'1',title:'锁屏开关12',type:'switch',val:'on'},
                     {id:'2',title:'非Wifi网络加载',type:'switch',val:'off'},
                 ],
                 [
