@@ -149,6 +149,7 @@ export const increment = ()=> {
         type: 'INCREMENT_COUNTER',
     }
 };
+
 export const decrement = ()=> {
     return {type: 'DECREMENT_COUNTER'}
 };

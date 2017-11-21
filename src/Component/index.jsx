@@ -35,7 +35,6 @@ class Main extends Component {
     render() {
     	const {clickItem,settings} = this.props;
         const settingData = settings.data;
-        console.log(window);
 /*        console.log("settingData:");
         console.log(settingData);*/
         return (
@@ -82,7 +81,10 @@ const mapStateToProps = (state) =>{
 }
 const mapDispatchToProps = (dispatch,ownProps) =>{
     return {
-        clickItem:(...args)=>{dispatch(action.clickItem(...args))}
+        clickItem:(...args)=>{
+            console.log(args);
+            dispatch(action.clickItem(...args));
+        }
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Main)

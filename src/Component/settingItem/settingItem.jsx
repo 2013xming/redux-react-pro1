@@ -14,8 +14,10 @@ class Main extends Component {
         super(props);
         this.state=Object.assign({},this.state,props);
         this.switchClick = (id,row,inlineRow,val)=>{
-            var value = val=='on' ? 'off' : 'on';
-            this.state.clickItem(id,row,inlineRow,value);
+            var value = val=='on' ? 'on' : 'on';
+            console.log('this.state');
+            console.log(this.state);
+            this.state.clickItem(id,row,inlineRow,value,this.state.storageKey,false);
         }
     }
 

@@ -83,3 +83,9 @@ module.exports = {
         inline: true // 实时刷新
     },
 };
+background-color:'#f1f1f1';
+margin-top:4px;
+border:1px solid #999999;
+background-color:(255,255,255,0);
+height:60px;
+width:60px;

@@ -2,10 +2,12 @@ var webpack = require('webpack');
 var express = require('express');
 var config = require('./webpack.config.hot');
 var proxyMiddleware = require('http-proxy-middleware')
+var path = require('path');
 
 var app = express();
 var compiler = webpack(config);
 
+/*app.use('/pqx', express.static(config.output.publicPath, { maxAge: '365d' }));*/
 app.use(require('webpack-dev-middleware')(compiler, {
 	publicPath: config.output.publicPath,
 	hot: true,
@@ -28,7 +30,7 @@ app.use('/shopro', proxyMiddleware({
 app.use(require('webpack-hot-middleware')(compiler));
 
 //将其他路由，全部返回index.html
-app.get('*', function(req, res) {
+app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index.html')
 });
 

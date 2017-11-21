@@ -14,6 +14,9 @@ module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry: {
         app: [
+            'babel-polyfill',
+            'react-hot-loader/patch',
+            'webpack/hot/dev-server',
             'webpack-hot-middleware/client',
             APP_FILE
         ]
@@ -25,41 +28,41 @@ module.exports = {
         chunkFilename: '[name].[chunkhash:5].min.js',
     },
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js$/,
             exclude: /^node_modules$/,
-            loaders: ['react-hot', 'babel'],
+            use: [{loader:'react-hot-loader/webpack'},{loader:'babel-loader'}],
             include: [APP_PATH]
         }, {
             test: /\.css$/,
             exclude: /^node_modules$/,
-            loaders: ['style', 'css', 'autoprefixer'],
+            use: [{loader:'style-loader'}, {loader:'css-loader'}, {loader:'autoprefixer-loader'}],
             include: [APP_PATH]
         }, {
             test: /\.less$/,
             exclude: /^node_modules$/,
-            loaders: ['style', 'css', 'autoprefixer', 'less'],
+            use: [{loader:'style-loader'}, {loader:'css-loader'}, {loader:'autoprefixer-loader'}, {loader:'less-loader'}],
             include: [APP_PATH]
         }, {
             test: /\.scss$/,
             exclude: /^node_modules$/,
-            loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader',
+            use: [{loader:'style-loader'}, {loader:'css-loader'}, {loader:'autoprefixer-loader'}, {loader:'scss-loader'}],
             include: [APP_PATH]
         }, {
             test: /\.(eot|woff|svg|ttf|woff2|gif|appcache)(\?|$)/,
             exclude: /^node_modules$/,
-            loader: 'file-loader?name=[name].[ext]',
+            use: 'file-loader?name=[name].[ext]',
             include: [APP_PATH]
         }, {
             test: /\.(png|jpg|gif)$/,
             exclude: /^node_modules$/,
-            loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
+            use: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
             //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
             include: [APP_PATH]
         }, {
             test: /\.jsx$/,
             exclude: /^node_modules$/,
-            loaders: ['react-hot', 'jsx', 'babel'],
+            use: [{loader:'react-hot-loader/webpack'}, {loader:'jsx-loader'}, {loader:'babel-loader'}],
             include: [APP_PATH]
         }]
     },
@@ -77,9 +80,9 @@ module.exports = {
             hash: false,
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
     ],
-    resolve: {
-        extensions: ['', '.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
+    resolve:{
+        extensions: [ '.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
     }
 };
