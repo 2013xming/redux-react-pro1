@@ -9,6 +9,7 @@ import SettingBlock from './settingBlock/settingBlock';
 import SettingItem from './settingItem/settingItem';
 import *as action from '../Redux/Action/Index';
 
+
 import './index.less';
 class Main extends Component {
 /*    constructor(props) {
@@ -48,19 +49,6 @@ class Main extends Component {
 	                }            
             </div>
         )
-        // const {increment, decrement, counter} = this.props;
-        // console.log(this.props);
-        // //渲染组件，包括一个数字，四个按钮
-        // return (
-        //     <p>
-        //         Clicked: {counter} time
-        //         {' '}
-        //         <button onClick={increment}>+</button>
-        //         {' '}
-        //         <button onClick={decrement}>-</button>
-        //         {' '}
-        //     </p>
-        // )
     }
     
 }
@@ -73,7 +61,7 @@ class Main extends Component {
 */
 
 const mapStateToProps = (state) =>{
-	console.log("mapStateToProps:");
+	console.log("IndexmapStateToProps:");
 //	console.log(state);
     return  {
         settings : state.settings
@@ -84,6 +72,8 @@ const mapDispatchToProps = (dispatch,ownProps) =>{
         clickItem:(...args)=>{
             console.log(args);
             dispatch(action.clickItem(...args));
+ 
+            window.jsKitStorage.setItem(args[4],true);
         }
     }
 }

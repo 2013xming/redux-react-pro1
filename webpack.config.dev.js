@@ -21,41 +21,41 @@ module.exports = {
         chunkFilename: '[name].[chunkhash:5].min.js',
     },
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js$/,
             exclude: /^node_modules$/,
-            loader: 'babel',
+            use: [{loader:'babel-loader'}],
             include: [APP_PATH]
         }, {
             test: /\.css$/,
             exclude: /^node_modules$/,
-            loader: ExtractTextPlugin.extract('style', ['css', 'autoprefixer']),
+            use: [{loader:'style-loader'}, {loader:'css-loader'}, {loader:'autoprefixer-loader'}],
             include: [APP_PATH]
         }, {
             test: /\.less$/,
             exclude: /^node_modules$/,
-            loader: ExtractTextPlugin.extract('style', ['css', 'autoprefixer', 'less']),
+            use: [{loader:'style-loader'}, {loader:'css-loader'}, {loader:'autoprefixer-loader'}, {loader:'less-loader'}],
             include: [APP_PATH]
         }, {
             test: /\.scss$/,
             exclude: /^node_modules$/,
-            loader: ExtractTextPlugin.extract('style', ['css', 'autoprefixer', 'sass']),
+            use: [{loader:'style-loader'}, {loader:'css-loader'}, {loader:'autoprefixer-loader'}, {loader:'scss-loader'}],
             include: [APP_PATH]
         }, {
             test: /\.(eot|woff|svg|ttf|woff2|gif|appcache)(\?|$)/,
             exclude: /^node_modules$/,
-            loader: 'file-loader?name=[name].[ext]',
+            use: 'file-loader?name=[name].[ext]',
             include: [APP_PATH]
         }, {
-            test: /\.(png|jpg)$/,
+            test: /\.(png|jpg|gif)$/,
             exclude: /^node_modules$/,
-            loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
+            use: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
             //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
             include: [APP_PATH]
         }, {
             test: /\.jsx$/,
             exclude: /^node_modules$/,
-            loaders: ['jsx', 'babel'],
+            use: [{loader:'jsx-loader'}, {loader:'babel-loader'}],
             include: [APP_PATH]
         }]
     },
@@ -74,7 +74,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {
-        extensions: ['', '.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
+        extensions: ['.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
     },
     devServer: {
         contentBase: "./",
@@ -83,9 +83,3 @@ module.exports = {
         inline: true // 实时刷新
     },
 };
-background-color:'#f1f1f1';
-margin-top:4px;
-border:1px solid #999999;
-background-color:(255,255,255,0);
-height:60px;
-width:60px;

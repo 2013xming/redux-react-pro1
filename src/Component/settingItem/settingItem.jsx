@@ -6,7 +6,7 @@ import { is, fromJS} from 'immutable';
 import {Tool} from '../../Config/Tool';
 import template from '../common/template';
 import *as action from '../../Redux/Action/Index';
-import './settingItem.less';
+
 
 
 class Main extends Component {
@@ -14,10 +14,10 @@ class Main extends Component {
         super(props);
         this.state=Object.assign({},this.state,props);
         this.switchClick = (id,row,inlineRow,val)=>{
-            var value = val=='on' ? 'on' : 'on';
+            var value = val=='on' ? 'off' : 'on';
             console.log('this.state');
             console.log(this.state);
-            this.state.clickItem(id,row,inlineRow,value,this.state.storageKey,false);
+            this.state.clickItem(id,row,inlineRow,value,this.state.item.storageKey,false);
         }
     }
 

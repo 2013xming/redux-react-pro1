@@ -1,4 +1,4 @@
 import { combineReducers} from 'redux';
-import * as reducer from './settings.jsx';
+import {settings} from './settings.jsx';
 
-export default combineReducers(reducer);
+export default combineReducers({settings});

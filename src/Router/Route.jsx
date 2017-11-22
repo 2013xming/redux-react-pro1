@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import { Router, Route, Redirect, IndexRoute, browserHistory, hashHistory } from 'react-router';
 
-import index from '../Component/index'; //销售录入
+import index from '../Component/index'; 
+import settings from '../container/settings';
 
 class Roots extends Component {
     render() {
@@ -14,7 +15,13 @@ class Roots extends Component {
 const history = process.env.NODE_ENV !== 'production' ? browserHistory : hashHistory;
 
 
-const chooseProducts = (location, cb) => {
+/*const settings = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../container/settings').default)
+    },'settings')
+}*/
+
+/*const chooseProducts = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('../Component/chooseProducts').default)
     },'chooseProducts')
@@ -55,20 +62,30 @@ const mycanvas = (location,cb) => {
     },'mycanvas');
 }
 
-const RouteConfig = (
-    <Router history={history}>
-        <Route path="/" component={Roots}>
-            <IndexRoute component={index} />//首页
-            <Route path="index" component={index} />
-            <Route path="helpCenter" getComponent={helpCenter} />//帮助中心
+<Route path="helpCenter" getComponent={helpCenter} />//帮助中心
             <Route path="saleRecord" getComponent={saleRecord} />//销售记录
             <Route path="chooseProducts" getComponent={chooseProducts} />//选择商品
             <Route path="allDeposit" getComponent={allDeposit} />//余额
             <Route path="applyDeposit" getComponent={applyDeposit} />//申请提现
             <Route path="applyRecord" getComponent={applyRecord} /> //提现记录
             <Route path="mycanvas" getComponent={mycanvas} /> //
+*/
+
+const RouteConfig = (
+    <Router history={hashHistory}>
+        <Route path="/settings.html" component={Roots}>
+            <IndexRoute component={settings} />
+        
+           
             <Redirect from='*' to='/'  />
         </Route>
+        <Route path="/" component={Roots}>
+            <IndexRoute component={index} />
+            <Route path="/set" getComponent={settings} />
+           
+            <Redirect from='*' to='/'  />
+        </Route>
+        
     </Router>
 );
 
