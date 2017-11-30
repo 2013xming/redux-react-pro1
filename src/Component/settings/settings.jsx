@@ -4,7 +4,7 @@ import {History, Link } from 'react-router';
 import { connect } from 'react-redux';
 import { is, fromJS} from 'immutable';
 
-import SettingBlock from '../settingBlock/settingBlock';
+import SettingBlock from './settingBlock/settingBlock';
 
 import './settings.less';
 

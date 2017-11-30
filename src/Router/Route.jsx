@@ -73,7 +73,13 @@ const mycanvas = (location,cb) => {
 
 const RouteConfig = (
     <Router history={hashHistory}>
-        <Route path="/settings.html" component={Roots}>
+        <Route path="/#/modules/settings/settings.html" component={Roots}>
+            <IndexRoute component={settings} />
+        
+           
+            <Redirect from='*' to='/'  />
+        </Route>
+        <Route path="/#/modules/settings/article.html" component={Roots}>
             <IndexRoute component={settings} />
         
            

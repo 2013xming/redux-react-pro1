@@ -9,16 +9,10 @@ import *as action from '../../Redux/Action/Index';
 
 
 
-class Main extends Component {
+class Article extends Component {
     constructor(props) {
         super(props);
         this.state=Object.assign({},this.state,props);
-        this.switchClick = (id,row,inlineRow,val)=>{
-            var value = val=='on' ? 'off' : 'on';
-            console.log('this.state');
-            console.log(this.state);
-            this.state.clickItem(id,row,inlineRow,value,this.state.item.storageKey,false);
-        }
     }
 
     // componentWillMount() {
@@ -60,24 +54,4 @@ class Main extends Component {
         
     }
 }
-export default Main;
-/*export default template({
-    id: 'settingItem',  //应用关联使用的redux
-    component: Main,
-    url: ''
-});*/
-
-/*const mapStateToProps = (state) =>{
-    console.log('mapStateToProps');
-    console.log(state);
-    var item = Object.assign({},state.item);
-    return  {
-        item: item
-    }
-}
-const mapDispatchToProps = (dispatch,ownProps) =>{
-    return {
-        switchClick:(...args) => dispatch(action.clickItem())
-    }
-}
-export default connect(mapStateToProps,mapDispatchToProps)(Main)*/
+export default Article;

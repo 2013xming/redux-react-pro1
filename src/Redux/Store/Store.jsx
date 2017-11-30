@@ -17,7 +17,7 @@ if (module.hot) {
 		console.log('Reducer');
 		console.log(reducer);
 
-	  	var nextRootReducer = combineReducers(require('../Reducer/settings'));
+	  	var nextRootReducer = reducer;
 	  	console.log(nextRootReducer);
 	  	store.replaceReducer(nextRootReducer);
 	});

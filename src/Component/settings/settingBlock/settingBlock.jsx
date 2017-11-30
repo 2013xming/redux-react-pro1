@@ -3,8 +3,7 @@ import pureRender from 'pure-render-decorator';
 import {History, Link } from 'react-router';
 import { connect } from 'react-redux';
 import { is, fromJS} from 'immutable';
-import {Tool} from '../../Config/Tool';
-import template from '../common/template';
+
 import SettingItem from '../settingItem/settingItem';
 import './settingBlock.less';
  

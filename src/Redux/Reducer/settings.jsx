@@ -3,16 +3,18 @@ import {SET_STATE, REQUEST_POSTS, RECEIVE_POSTS} from '../Action/Index'
 import {RECORD_STATE, SAVE_PRODUCT_LIST, NEW_PRODUCT_DATA} from '../Action/Index'
 import {DELETE_ITEM} from '../Action/Index'
 import {GET_DATA_START , GET_DATA_SUCCESS, TEST_DISPATCH} from '../Action/Index'
-
+import '../../utils/utils';
 
 //const initialState = Immutable.fromJS({}) //=Immutable.Map({})
 
 const defaultlState = Immutable.fromJS({data: {}, isFetching: false});
+let lock_screen = jsKitStorage.getItem('lock_screen_open',false);
+let lock_screen_val = lock_screen ? 'on' : 'off';
 const initialState = {
         data:[
                 [
-                    {id:'1',title:'锁屏开关12',type:'switch',val:'on',storageKey:'lock_screen_open'},
-                    {id:'2',title:'非Wifi网络加载22',type:'switch',val:'off'},
+                    {id:'lock_screen',title:'锁屏开关',type:'switch',val:lock_screen_val,storageKey:'lock_screen_open'},
+                    {id:'2',title:'非Wifi网络加载22',type:'switch',val:'off',storageKey:'lock_screen_open'},
                 ],
                 [
                     {id:'3',title:'消息推送设置12345',type:'switch',val:'on'},     

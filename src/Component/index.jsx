@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { is, fromJS} from 'immutable';
 import {Tool} from '../Config/Tool';
 import {Header,template} from './common/mixin';
-import SettingBlock from './settingBlock/settingBlock';
-import SettingItem from './settingItem/settingItem';
+import SettingBlock from './settings/settingBlock/settingBlock';
+import SettingItem from './settings/settingItem/settingItem';
 import *as action from '../Redux/Action/Index';
 
 
