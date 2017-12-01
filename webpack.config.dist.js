@@ -8,7 +8,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 var ROOT_PATH = path.join(__dirname);
 var APP_PATH = path.join(ROOT_PATH, 'src'); //__dirname 中的src目录，以此类推
 var APP_FILE = path.join(APP_PATH, 'app'); //根目录文件app.jsx地址
-var BUILD_PATH = path.join(__dirname, '/pxq/dist'); //发布文件所存放的目录/pxq/dist/前面加/报错？
+var BUILD_PATH = path.join(__dirname, '/dist/'); //发布文件所存放的目录/pxq/dist/前面加/报错？
 
 module.exports = {
     entry: {
@@ -24,10 +24,10 @@ module.exports = {
         ]
     },
     output: {
-        publicPath: './dist/', //编译好的文件，在服务器的路径,域名会自动添加到前面
+//        publicPath: BUILD_PATH, //编译好的文件，在服务器的路径,域名会自动添加到前面,本地不配置，cdn 配置
         path: BUILD_PATH, //编译到当前目录
-        filename: '[name].js', //编译后的文件名字
-        chunkFilename: '[name].[chunkhash:5].min.js',
+        filename: 'js/[name].js', //编译后的文件名字
+        chunkFilename: 'js/[name].[chunkhash:5].min.js',
     },
     module: {
         rules: [{
@@ -38,17 +38,33 @@ module.exports = {
         }, {
             test: /\.css$/,
             exclude: /^node_modules$/,
-            use: [{loader:'style-loader'}, {loader:'css-loader'}, {loader:'autoprefixer-loader'}],
+            use: ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use: [{loader:'css-loader'}, {loader:'autoprefixer-loader'}]
+            }),
             include: [APP_PATH]
         }, {
             test: /\.less$/,
             exclude: /^node_modules$/,
-            use: [{loader:'style-loader'}, {loader:'css-loader'}, {loader:'autoprefixer-loader'}, {loader:'less-loader'}],
+            use: ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use: [{
+                    loader:'css-loader',
+
+                }, {loader:'autoprefixer-loader'}, 
+                {
+                    loader:'less-loader', 
+                }],
+                publicPath:'../'
+            }),
             include: [APP_PATH]
         }, {
             test: /\.scss$/,
             exclude: /^node_modules$/,
-            use: [{loader:'style-loader'}, {loader:'css-loader'}, {loader:'autoprefixer-loader'}, {loader:'scss-loader'}],
+            use: ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use: [{loader:'css-loader'}, {loader:'autoprefixer-loader'}, {loader:'less-loader'}]
+            }),
             include: [APP_PATH]
         }, {
             test: /\.(eot|woff|svg|ttf|woff2|gif|appcache)(\?|$)/,
@@ -75,14 +91,14 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({  //根据模板插入css/js等生成最终HTML
-            filename: '../index.html', //生成的html存放路径，相对于 path
+            filename: 'html/index.html', //生成的html存放路径，相对于 path
             template: './src/template/index.html', //html模板路径
             inject: 'body',
             hash: true,
         }),
-        new ExtractTextPlugin('[name].css'),
+        new ExtractTextPlugin('css/[name].css'),
         //提取出来的样式和common.js会自动添加进发布模式的html文件中，原来的html没有
-        new webpack.optimize.CommonsChunkPlugin({name:"common", filename:"common.bundle.js"}),
+        new webpack.optimize.CommonsChunkPlugin({name:"common", filename:"js/common.bundle.js"}),
         new webpack.optimize.UglifyJsPlugin({
             output: {
                 comments: false, // remove all comments

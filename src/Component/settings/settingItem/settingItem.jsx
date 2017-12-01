@@ -47,6 +47,7 @@ class Main extends Component {
         }else if(item.type == 'link'){
             content = <p id={item.id}><a href={item.val}>{item.title}<span className="icon-arrow"></span></a></p>
         } 
+        
         return (
             <div>
                 {content}

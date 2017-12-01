@@ -17,7 +17,7 @@ const initialState = {
                     {id:'2',title:'非Wifi网络加载22',type:'switch',val:'off',storageKey:'lock_screen_open'},
                 ],
                 [
-                    {id:'3',title:'消息推送设置12345',type:'switch',val:'on'},     
+                    {id:'3',title:'消息推送设置',type:'switch',val:'on'},     
                 ],
                 [
                     {id:'4',title:'消息推送设置',type:'text',val:'22.2K'},   

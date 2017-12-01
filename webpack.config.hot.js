@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
+var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包,不会由js写成内联形式
 var HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html
 
 //定义地址
@@ -13,6 +13,15 @@ var BUILD_PATH = path.resolve(ROOT_PATH, '/pxq/dist'); //发布文件所存放�
 module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry: {
+        common: [
+            "react",
+            'react-dom',
+            'react-router',
+            'redux',
+            'react-redux',
+            'redux-thunk',
+            'immutable'
+        ],
         app: [
             'babel-polyfill',
             'react-hot-loader/patch',
@@ -81,6 +90,7 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
+        new ExtractTextPlugin('[name].css')
     ],
     resolve:{
         extensions: [ '.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全

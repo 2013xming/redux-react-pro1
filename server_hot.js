@@ -22,10 +22,10 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 
 //代理服务器
-app.use('/shopro', proxyMiddleware({
+/*app.use('/shopro', proxyMiddleware({
     target: 'http://cangdu.org',
     changeOrigin: true,
-}))
+}))*/
 
 app.use(require('webpack-hot-middleware')(compiler));
 
